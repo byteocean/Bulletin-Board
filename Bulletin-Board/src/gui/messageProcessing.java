@@ -1,17 +1,22 @@
 package gui;
 
+//import ensemble.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseMessage {
+public class messageProcessing {
     private String reveivedMsg;
+    private String messagePack;
     private String[] parseCondition = { ".*(?=Content:)",
 	    "(?<=Content:).*(?=Time:)", "(?<=Time:).*" };
     private String[] parsedMsg = { "Subject", "Content", "Time" };
 
-    public ParseMessage(String msg) {
-	this.reveivedMsg = msg;
-	parseMsg(reveivedMsg);
+    public messageProcessing() {
+
+    }
+
+    private void setMessagePack(String msgPack) {
+	messagePack = msgPack;
     }
 
     private void parseMsg(String msg) {
@@ -30,7 +35,15 @@ public class ParseMessage {
 
     }
 
-    public String[] getParsedMsg() {
+    public String codeMessage(String subject, String content, String time) {
+	setMessagePack("Re:" + subject + " Content:" + content + " Time:"
+		+ time);
+	return messagePack;
+    }
+
+    public String[] decodeMessage(String receivedMsg) {
+	this.reveivedMsg=receivedMsg;
+	parseMsg(this.reveivedMsg);
 	return parsedMsg;
     }
 
