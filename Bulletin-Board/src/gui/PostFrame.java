@@ -36,7 +36,7 @@ public class PostFrame extends JFrame {
 	    String subject = subjectField.getText(), content = contentArea
 		    .getText();
 	    PostMessage postMsg = new PostMessage(subject, content);
-	    System.out.print("return from send");
+//	    System.out.print("return from send");
 	    postMsg.castMessage();
 	    dispose();
 	}
@@ -45,7 +45,7 @@ public class PostFrame extends JFrame {
     class AbortButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent abortSending) {
-	    System.out.print("return from abort");
+//	    System.out.print("return from abort");
 	    dispose();
 	}
 
