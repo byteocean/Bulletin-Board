@@ -1,12 +1,16 @@
 package gui;
 
 //import ensemble.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class messageProcessing {
     private String reveivedMsg;
     private String messagePack;
+    private String timeStamp;
+    
     private String[] parseCondition = { ".*(?=Content:)",
 	    "(?<=Content:).*(?=Time:)", "(?<=Time:).*" };
     private String[] parsedMsg = { "Subject", "Content", "Time" };
@@ -35,9 +39,11 @@ public class messageProcessing {
 
     }
 
-    public String codeMessage(String subject, String content, String time) {
+    public String codeMessage(String subject, String content) {
+	SimpleDateFormat f=new SimpleDateFormat("yyyy-mm-dd:hh:mm:ss");
+	this.timeStamp=f.format(new Date());
 	setMessagePack("Re:" + subject + " Content:" + content + " Time:"
-		+ time);
+		+ this.timeStamp);
 	return messagePack;
     }
 
